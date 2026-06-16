@@ -1,0 +1,6 @@
+﻿
+<h2 class="text-center">BookedAppointment Details</h2>
+<hr />
+<div>
+    @await Component.InvokeAsync("UserBookApp", new { UserID =Convert.ToInt64(Context.Session.GetString("UserID"))})
+</div>

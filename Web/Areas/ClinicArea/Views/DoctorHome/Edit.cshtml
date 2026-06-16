@@ -1,0 +1,240 @@
+﻿@model DoctorDto
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title"><h1 class="text-center">Edit</h1></div>
+
+
+            <div class="text-danger">
+                @TempData["Message"]
+            </div>
+
+            <form asp-action="Edit" method="post" class="g-3" enctype="multipart/form-data">
+               
+                <input type="hidden" asp-for="DoctorID"/>
+                <hr />
+                <div class="row mb-2">
+                   <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="FirstName"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                   </div>
+                  <div class="col-6">
+                    <label for="inputNanme4" class="form-label font-18" asp-for="LastName"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                  </div>
+                </div>
+                
+                <div class="row mb-2">
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="MobileNo"></label>
+                        <input asp-for="MobileNo" class="form-control" />
+                        <span asp-validation-for="MobileNo" class="text-danger"></span>
+                    </div>
+                  <div class="col-6">
+                    <label for="inputNanme4" class="form-label font-18" asp-for="IsAvailable"></label>
+                    <br />
+                    <input asp-for="IsAvailable" class="checkbox-large " style="height:30px;width:30px" />
+                    <span asp-validation-for="IsAvailable" class="text-danger"></span>
+                   </div>
+                </div>
+
+                
+                <div class="row mb-2">
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="Address"></label>
+                    <textarea asp-for="Address" class="form-control"></textarea>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                <div class="col-6">
+                    <label for="inputNanme4" class="form-label font-18" asp-for="DoctorExperience"></label>
+                    <input asp-for="DoctorExperience" class="form-control" />
+                    <span asp-validation-for="DoctorExperience" class="text-danger"></span>
+                </div>
+                </div>
+                
+                <div class="row mb-2">
+                <div class="col-3">
+                    <label for="inputNanme4" class="form-label font-18 ">Select Country</label>
+                    <select class="form-control" asp-for="CountryID" asp-items="@ViewBag.countries">
+                        <option>Select Country</option>
+                    </select>
+                    <span asp-validation-for="CountryID" class="text-danger"></span>
+                </div>
+
+                <div class="col-3">
+                    <label for="inputNanme4" class="form-label font-18 ">Select State</label>
+                    <select class="form-control" asp-for="StateID" asp-items="@ViewBag.states">
+                        <option>Select State</option>
+                    </select>
+                    <span asp-validation-for="StateID" class="text-danger"></span>
+                </div>
+
+                <div class="col-3">
+                    <label for="inputNanme4" class="form-label font-18 ">Select City</label>
+                    <select class="form-control" asp-for="CityID" asp-items="@ViewBag.cities">
+                        <option>Select City</option>
+                    </select>
+                    <span asp-validation-for="CityID" class="text-danger"></span>
+                </div> 
+
+                <div class="col-3">
+                    <label for="inputNanme4" class="form-label font-18 ">Select Area</label>
+                    <select class="form-control" asp-for="AreaID" asp-items="@ViewBag.Areas">
+                        <option>Select Area</option>
+                    </select>
+                    <span asp-validation-for="AreaID" class="text-danger"></span>
+                </div>
+            </div>
+
+                <div class="row mt-2">
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18 ">OLD Photo</label>
+                        <div>
+                            <img src="@Model.PhotoPath" width="120" height="120" />
+                        </div>
+                        <input type="hidden" asp-for="PhotoPath" />
+
+                    </div>
+                <div class="col-6">
+                    <label for="inputNanme4" class="form-label font-18">Select New Photo</label>
+                    <input type="file" asp-for="PhotoFile" class="form-control" />
+                    <span asp-validation-for="PhotoFile" class="text-danger"></span>
+                </div>
+
+            </div>
+                <div class="row mb-2">
+
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="DoctorQualification"></label>
+                        <input asp-for="DoctorQualification" class="form-control" />
+                        <span asp-validation-for="DoctorQualification" class="text-danger"></span>
+                    </div>
+
+                <div class="col-6">
+                    <label for="inputNanme4" class="form-label font-18" asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                </div>
+               <div class="row mb-2">
+                <div class="col-6">
+                    <label for="inputNanme4" class="form-label font-18 ">Select Clinic</label>
+                    <select class="form-control" asp-for="ClinicID" asp-items="@ViewBag.clinics">
+                        <option>Select Clinic</option>
+                    </select>
+                    <span asp-validation-for="ClinicID" class="text-danger"></span>
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="OPDFees"></label>
+                        <input asp-for="OPDFees" class="form-control" />
+                        <span asp-validation-for="OPDFees" class="text-danger"></span>
+                    </div>
+                </div>
+
+               
+                    <div class="col=6">
+                        <label class="font-18 form-label ">Select Color</label>
+                        <div>
+                            @await Component.InvokeAsync("SpecilityVC", new { doctorid = Model.DoctorID })
+                        </div>
+                    </div>
+               
+
+                </div>
+
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                    <a class="btn btn-secondary" asp-action="Index">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#CountryID").change(function () {
+            var catid = $(this).val();
+
+            $.ajax({
+                url:`/ClinicArea/DoctorHome/GetstateJson?CountryID=${catid}`,
+                type:"get",
+                contentType:"application/json",
+                success: function (result) {
+                    // alert(JSON.stringify(result));
+                    $("#StateID").empty();
+                    let opt="";
+                    var Firstrow=`<option value='0'>Select State</option>`
+                    $('#StateID').append(Firstrow);
+                    $.each(result, function (ind, item) {
+                         opt = `<option value=${item.stateID}>${item.stateName}</option>`;
+                        $("#StateID").append(opt);
+                    });
+                },
+                error:function(err)
+                {
+                    alert(JSON.stringify(err));
+                }
+            });
+        });
+
+
+
+
+        $("#StateID").change(function () {
+            var sid = $(this).val();
+
+            $.ajax({
+                url:`/ClinicArea/DoctorHome/GetCityJson?stateid=${sid}`,
+                type:"get",
+                contentType:"application/json",
+                success: function (result) {
+                    // alert(JSON.stringify(result));
+                    $("#CityID").empty();
+                     let opt=" ";
+                    var Firstrow=`<option value='0'>Select City</option>`
+                    $("#CityID").append(Firstrow);
+                    $.each(result, function (ind, item) {
+                         opt = `<option value=${item.cityID}>${item.cityName}</option>`;
+                        $("#CityID").append(opt);
+                    });
+                },
+                error:function(err)
+                {
+                    alert(JSON.stringify(err));
+                }
+            });
+        });
+
+          $("#CityID").change(function () {
+            var cid = $(this).val();
+
+            $.ajax({
+                url:`/ClinicArea/DoctorHome/GetAreaJSON?cityid=${cid}`,
+                type:"get",
+                contentType:"application/json",
+                success: function (result) {
+                    // alert(JSON.stringify(result));
+                    
+                    $("#AreaID").empty();
+                     let opt=" ";
+                    var Firstrow=`<option value='0'>Select Area</option>`
+                    $("#AreaID").append(Firstrow);
+                    $.each(result, function (ind, item) {
+                         opt = `<option value=${item.areaID}>${item.areaName}</option>`;
+                        $("#AreaID").append(opt);
+                    });
+                },
+                error:function(err)
+                {
+                    alert(JSON.stringify(err));
+                }
+            });
+        });
+
+    });
+</script> 

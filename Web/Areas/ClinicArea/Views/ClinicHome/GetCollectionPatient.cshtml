@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PatientCollectionDto>
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h2 style="text-align:center;color:crimson">Get Patient Amount</h2>
+    </div>
+
+
+    <table border="1" style="text-align:center;font-size:large" cellpadding="5">
+        <thead style="background-color:antiquewhite">
+            <tr>
+                <th>SrNo</th>
+                <th>PatientName</th>
+                <th>TotalAmount</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @{
+                int srno = 1;
+                decimal AllTotalAmount = 0;
+            }
+
+            @foreach (var temp in Model)
+            {
+                <tr>
+                    <td>@srno</td>
+                    <td>@temp.PatientName</td>
+                    <td>@temp.Amount</td>
+
+                </tr>
+
+                srno++;
+                AllTotalAmount = AllTotalAmount + @temp.Amount;
+            }
+            <tr>
+                <td colspan="2" style="text-align:right; font-weight:bold;">Total Amount:</td>
+                <td> @AllTotalAmount</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<button onclick="printDailyCollection()" style="background-color:blue ;margin-left:45% ;height:40px ;width:70px;color:white">Print</button>
+<script type="text/javascript">
+    function printDailyCollection(){
+        window.print();
+    }
+</script>

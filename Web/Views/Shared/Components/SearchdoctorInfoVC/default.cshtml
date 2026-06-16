@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DoctorInfoDto>
+
+<div>
+    @foreach (var temp in Model)
+    {
+          
+        <div class="card " style="margin-left:100px;margin-right:100px">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <img src="@temp.PhotoPath" width="120" height="120" />
+                        </div>
+                        <div class="col-lg-7 ">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>DoctorName :</th>
+                                        <td>@temp.DoctorName</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ClinicName :</th>
+                                        <td>@temp.ClinicName</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ClinicAddress :</th>
+                                        <td>@temp.ClinicAddress</td>
+                                    </tr>
+                                    <tr>
+                                        <th>MobileNo :</th>
+                                        <td>@temp.MobileNo</td>
+                                    </tr>
+                                    <tr>
+                                        <th>EmailID :</th>
+                                        <td>@temp.EmailID</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

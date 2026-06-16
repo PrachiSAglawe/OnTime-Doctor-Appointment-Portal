@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Medicine>
+
+
+<div class="card">
+    <div class="card-body">
+        <ul>
+            <li>
+                <h1 class="card-title font-18 text-primary">Medicine List</h1>
+            </li>
+        </ul>
+        <hr />
+
+        <a class="btn btn-success text-white" asp-action="Create">Create</a>
+        <div class="text-danger">
+            @TempData["Message"]
+        </div>
+
+
+        <div class="table-responsive pt-3">
+            <table class="table table-bordered  table-hover">
+                <thead class="font-18" style="background-color:antiquewhite">
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                           MedicineName
+                        </th>
+                        <th>
+                            Generic Name
+                        </th>
+                        <th>
+                            MedicineType
+                        </th>
+                       
+                       
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        int srNo = 1;
+                    }
+                    @foreach (var temp in Model)
+                    {
+                        <tr>
+                            <td>@srNo</td>
+                            <td>@temp.MedicineName</td>
+                            <td>@temp.GenericName</td>
+                            <td>@temp.MedicineTypes</td>
+                          
+                           
+                        </tr>
+                        srNo++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BookedAppointments>
+
+    <div class="card">
+        <div class="card-header">
+            <table class="table font-18">
+                <thead>
+            <tr>
+                    <th class="text-right">FromDate:</th>
+                    <td> @ViewBag.FromDate.ToString("dd/MM/yyyy")</td>
+                    
+                    <th class="text-right">ToDate:</th>
+                    <td>@ViewBag.ToDate.ToString("dd/MM/yyyy")</td>
+
+            </tr>
+                </thead>
+            </table>
+       
+      
+        </div>
+        <div class="card-body">
+            <h3 class="text-center text-success">Missed Appointments</h3>
+            <hr />
+        <table class="table table-bordered table-hover font-18 text-center">
+            <thead style="background-color:antiquewhite">
+                <tr>
+                    <th>SrNo</th>
+                    <th>AppointmentDate</th>
+                    <th>PatientName</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    int srno = 1;
+
+                }
+
+                @foreach (var temp in Model)
+                {
+                    <tr>
+                        <td>@srno</td>
+                        <td>@temp.AppointmentDate.ToString("dd/MM/yyyy")</td>
+                        <td>@temp.Patient.FullName</td>
+
+                    </tr>
+                    srno++;
+
+                }
+
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+
+

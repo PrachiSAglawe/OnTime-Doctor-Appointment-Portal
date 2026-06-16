@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+
+@model IEnumerable<Patient>
+<h2 style="color:crimson;text-align:center"> Selected Doctor - Patients List</h2>
+<table border="1" style="text-align:center;font-size:large" class="table table-hover table-responsive"  cellpadding="5">
+    <thead style="background-color:antiquewhite">
+        <tr>
+            <th>SrNo</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Address</th>
+            <th>MobileNo</th>
+            <th>Gender</th>
+            <th>EmailID</th>
+            <th>PhotoPath</th>
+            <th>UserName</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            int srno = 1;
+            
+        }
+
+        @foreach (var temp in Model)
+        {
+            <tr>
+                <td>@srno</td>
+                <td>@temp.FirstName</td>
+                <td>@temp.LastName</td>
+                <td>@temp.Address</td>
+                <td>@temp.MobileNo</td>
+                <td>@temp.Gender</td>
+                <td>@temp.EmailID</td>
+                <td>
+                    <img src="@temp.PhotoPath" width="80" height="80" />
+                </td>
+                <td>@temp.User.FullName</td>
+
+            </tr>
+            srno++;
+           
+        }
+       
+    </tbody>
+</table>
+<div class="text-center">
+    <button onclick="PrintAllPatient()" style="text-align:center;height:40px;width:50px;margin-top:2px;background-color:blue;margin-left:50%;color:white">Print</button>
+
+</div>
+
+
+
+
+<script type="text/javascript">
+    function PrintAllPatient(){
+        window.print();
+    }
+</script>

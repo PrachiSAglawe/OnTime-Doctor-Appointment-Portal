@@ -1,0 +1,111 @@
+﻿@model Doctor
+
+<div class="card">
+    <div class="card-body">
+       
+        <h1 class=" text-center">Doctor Details</h1>
+        <hr />
+        <div class="table-responsive pt-3">
+            <form>
+            <table class="table table-bordered  table-hover">
+                <thead class="font-18">
+                    <tr>
+
+                    <tr>
+                        <th>
+                            DoctorID
+                        </th>
+                        <td>
+                            @Model.DoctorID
+                        </td>
+                    </tr>
+                        <tr>
+                        <th>
+                            FirstName
+                        </th>
+                        <td>
+                            @Model.FirstName
+                        </td>
+                        </tr>
+                       <tr>
+                        <th>
+                            LastName
+                        </th>
+                        <td>@Model.LastName</td>
+                       </tr>
+                       <tr>
+                        <th>
+                            MobileNo
+                        </th>
+                        <td>
+                            @Model.MobileNo
+                        </td>
+                       </tr>
+                        <tr>
+                        <th>
+                            IsAvailable
+                        </th>
+                        <td>
+                            @Model.IsAvailable
+                        </td>
+                        </tr>
+                       <tr>
+                        <th>
+                            Address
+                        </th>
+                        <td>
+                            @Model.Address
+                        </td>
+                       </tr>
+                       <tr>
+                        <th>
+                            DoctorExperience
+                        </th>
+                        <td>
+                            @Model.DoctorExperience
+                        </td>
+                       </tr>
+                      <tr>
+                        <th>
+                            AreaName
+                        </th>
+                        <td>@Model.Area.AreaName</td>
+                      </tr>
+                       <tr>
+                        <th>
+                            PhotoPath
+                        </th>
+                      
+                            <td>
+                                <img src="@Model.PhotoPath" width="150" height="120" />
+                            </td>
+                       
+                       </tr>
+                       <tr>
+                        <th>
+                            DoctorQualification
+                        </th>
+                        <td>
+                            @Model.DoctorQualification
+                        </td>
+                       </tr>
+                       <tr>
+                        <th>
+                            Password
+                        </th>
+                        <td>
+                            @Model.Password
+                        </td>
+                       </tr>
+
+                       
+                </thead>
+               
+            </table>
+            </form>
+            <a class="btn btn-success text-white" asp-action="Index" asp-controller="DoctorHome">Back</a>
+        </div>
+    </div>
+</div>
+
+

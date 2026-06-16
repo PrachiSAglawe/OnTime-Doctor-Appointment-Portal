@@ -1,0 +1,95 @@
+﻿@model Clinic
+<div class="card ms-5">
+    <div class="card-body">
+        <div>
+
+            <div class="text-danger">
+                @TempData["Message"]
+            </div>
+
+            <form asp-action="Create" method="post" class="g-3  p-5 ">
+                <h3>Create New</h3>
+                <hr />
+                <div>
+
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="ClinicName"></label>
+                        <input asp-for="ClinicName" class="form-control" />
+                        <span asp-validation-for="ClinicName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div>
+                <div class="col-6">
+                    <label for="inputNanme4" class="form-label font-18" asp-for="Address"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+        </div>
+                <div>
+
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="MobileNo"></label>
+                        <input asp-for="MobileNo" class="form-control" />
+                        <span asp-validation-for="MobileNo" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div>
+
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="EmailID"></label>
+                        <input asp-for="EmailID" class="form-control" />
+                        <span asp-validation-for="EmailID" class="text-danger"></span>
+                    </div>
+                </div>
+                <div>
+
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="ContactPersonName"></label>
+                        <input asp-for="ContactPersonName" class="form-control" />
+                        <span asp-validation-for="ContactPersonName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div>
+
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="LandLineNo"></label>
+                        <input asp-for="LandLineNo" class="form-control" />
+                        <span asp-validation-for="LandLineNo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div>
+
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="WebsiteUrl"></label>
+                        <input asp-for="WebsiteUrl" class="form-control" />
+                        <span asp-validation-for="WebsiteUrl" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <label for="inputNanme4" class="form-label font-18 ">Select City</label>
+                    <select class="form-control" asp-for="CityID" asp-items="@ViewBag.Cities">
+                        <option>Select city</option>
+                    </select>
+                    <span asp-validation-for="CityID" class="text-danger"></span>
+                </div>
+
+
+
+
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                    <a class="btn btn-secondary" asp-action="Index">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

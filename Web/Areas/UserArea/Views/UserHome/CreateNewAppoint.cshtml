@@ -1,0 +1,64 @@
+﻿
+<div class="card">
+    <div class="card-body">
+        <div>
+
+            <div class="text-danger">
+                @TempData["Message"]
+            </div>
+
+            <form asp-action="Create" method="post" class="g-3" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h3>Create New Appointment</h3>
+                <hr />
+                <div class="row mb-2">
+
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18 ">Select ClinicName</label>
+                        <select class="form-control" value="ClinicName" asp-items="@ViewBag.ClinicName" name="ClinicName">
+                            <option>Select Clinic</option>
+                        </select>
+                        
+                    </div>
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" >Select Doctor</label>
+                        <select class="form-control" value="FullName" asp-items="@ViewBag.Doctors" name="FullName">
+                            <option>Select Doctor</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+
+
+                    <div class="col-6">
+                        <label style="font-size:large" for="date">Select AppointmentDate</label>
+                        <input type="date" id="date" name="Fromdate" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18">Select Patient</label>
+                        <select class="form-control" asp-items="@ViewBag.Patients" value="FullName"  name="FullName">
+                            <option>Select Patient</option>
+                        </select>
+                    </div>
+
+
+
+                </div>
+               
+
+
+               
+            
+
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">BookedAppointment</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                    <a class="btn btn-secondary" asp-action="AllPatients">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

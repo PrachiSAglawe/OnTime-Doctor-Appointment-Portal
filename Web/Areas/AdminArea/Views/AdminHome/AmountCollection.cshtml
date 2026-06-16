@@ -1,0 +1,35 @@
+﻿
+<style>
+    .custom-hover:hover {
+        background-color: #007bff;
+        color: white;
+        border-color: black;
+    }
+</style>
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="text-center text-info">Get Amount Collection For Clinics</h2>
+    </div>
+    <div class="card-body">
+        <form asp-action="GetAmountCollection" method="post">
+            <div class="row" style="margin-left:22%">
+                <div class="col-md-4">
+                    <label style="font-size:large" for="date"><b>From Date:</b></label>
+                    <input type="date" id="date" name="Fromdate" class="form-control">
+
+                </div>
+
+                <div class="col-md-4">
+                    <label style="font-size:large" for="date"><b>Todate  Date:</b></label>
+                    <input type="date" id="date" name="Todate" class="form-control">
+
+                </div>
+
+            </div>
+            <div class="mt-4 text-center"><input type="submit" value="Generate" class="btn btn-outline-primary  btn-danger text-white custom-hover " /></div>
+        </form>
+    </div>
+</div>
+
+

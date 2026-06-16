@@ -1,0 +1,64 @@
+﻿
+@model IEnumerable<PaymentHistoryDto>
+
+<style>
+    .custom-hover:hover {
+        background-color: #007bff;
+        color: white;
+        border-color: black;
+    }
+</style>
+
+<div class="card">
+    <div class="card-header">
+      <h2 style="text-align:center;color:blue">Payment History</h2>
+    </div>
+
+
+    <table border="1" style="text-align:center;font-size:large" cellpadding="5">
+        <thead style="background-color:antiquewhite">
+            <tr>
+                <th>SrNo</th>
+                <th>DoctorName</th>
+                <th>PatientName</th>
+                <th>PaymentDate</th>              
+                <th>Amount</th>
+                <th>PaymentMode</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @{
+                int srno = 1;
+                decimal TotalAmount = 0;
+            }
+
+            @foreach (var temp in Model)
+            {
+                <tr>
+                    <td>@srno</td>
+                    <td>@temp.DoctorName</td>
+                    <td>@temp.PatientName</td>
+                    <td>@temp.PaymentDate</td>
+                    <td>@temp.Amount</td>
+                    <td>@temp.PaymentMode</td>
+                </tr>
+                   
+                srno++;
+                TotalAmount = TotalAmount + @temp.Amount;
+            }
+            <tr>
+                <td colspan="4" style="text-align:right; font-weight:bold;">Total Amount:</td>
+                <td> @TotalAmount</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<button onclick="printDailyCollection()" style="background-color:blue ;margin-left:45% ;height:40px ;width:70px;color:white">Print</button>
+<script type="text/javascript">
+    function printDailyCollection(){
+        window.print();
+    }
+</script>

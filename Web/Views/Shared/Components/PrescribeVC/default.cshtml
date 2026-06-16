@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BookedAppointments>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th> BookedAppoinmentID </th>
+            <th> AppointmentDate </th>
+            <th> StartTime</th>
+            <th> Endtime </th>
+            <th> DoctorClinicSessionID</th>
+            <th>PatientName</th>
+            <th>IsPaid</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var temp in Model)
+        {
+            <tr>
+                <td>@temp.BookedAppointmentsID</td>
+                <td>@temp.AppointmentDate</td>
+                <td>@temp.StartTime</td>
+                <td>@temp.EndTime</td>
+                <td>@temp.DoctorClinicSessionID</td>
+                <td>@temp.Patient.FullName</td>
+                <td>@temp.IsPaid</td>
+                <td>
+                    <a class="btn btn-success" asp-action="PrescribedEdit" asp-controller="DoctorHome" asp-route-id="@temp.PatientID" asp-route-bookapootid="@temp.BookedAppointmentsID" asp-area="DoctorArea">Edit</a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+

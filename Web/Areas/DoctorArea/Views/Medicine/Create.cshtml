@@ -1,0 +1,44 @@
+﻿
+@model Medicine
+<div class="card">
+    <div class="card-body">
+        <div>
+
+            <div class="text-danger">
+                @TempData["Message"]
+            </div>
+
+            <form asp-action="Create" method="post" class="g-3 shadow-lg dark p-5 ">
+                <h3>Create New</h3>
+                <hr />                      
+
+                    <div class="col-4">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="MedicineName"></label>
+                        <input asp-for="MedicineName" class="form-control" />
+                        <span asp-validation-for="MedicineName" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="GenericName"></label>
+                        <input asp-for="GenericName" class="form-control" />
+                        <span asp-validation-for="GenericName" class="text-danger"></span>
+                    </div>
+               
+              <div class="col-4">
+                  <label asp-for="MedicineTypes" class="form-label font-18"></label>
+                    <select name="MedicineTypes" class="form-control" asp-items="@Html.GetEnumSelectList<MedicineTypes>()">
+                        <option>Select Medicine Types</option>
+                    </select>
+                    <span asp-validation-for="MedicineTypes"></span>
+              </div>
+
+
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                    <a class="btn btn-secondary" asp-action="Index">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

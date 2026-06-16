@@ -1,0 +1,109 @@
+﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+@model DoctorClinicSession
+<div class="card">
+    <div class="card-body">
+        <div>
+
+            <div class="text-danger">
+                @TempData["Message"]
+            </div>
+
+            <form asp-action="Create" method="post" class="g-3  p-5 ">
+                <h3>Create New</h3>
+                <hr />
+                <div class="row">
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18 ">Select Doctor</label>
+                        <select class="form-control" asp-for="DoctorID" asp-items="@ViewBag.doctors" id="Doctorid">
+                            <option>Select Doctor</option>
+                        </select>
+                        <span asp-validation-for="DoctorID" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18 ">Select Clinic</label>
+                        <select class="form-control" asp-for="ClinicID" asp-items="@ViewBag.clinics" id="Clinicid">
+                            <option>Select Clinic</option>
+                        </select>
+                        <span asp-validation-for="ClinicID" class="text-danger"></span>
+                    </div>
+
+                </div>
+             <div class="row">
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18 ">Select OPDSessionName</label>
+                        <select class="form-control" asp-for="OPDSessionID" asp-items="@ViewBag.sessions">
+                            <option>Select OPD Session</option>
+                        </select>
+                        <span asp-validation-for="OPDSessionID" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="StartTime"></label>
+                        <input asp-for="StartTime" class="form-control" />
+                        <span asp-validation-for="StartTime" class="text-danger"></span>
+                    </div>
+              </div>
+                
+
+              
+                <div class="row">
+
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="EndTime"></label>
+                        <input asp-for="EndTime" class="form-control" />
+                        <span asp-validation-for="EndTime" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="TimeInterval"></label>
+                        <input asp-for="TimeInterval" class="form-control" />
+                        <span asp-validation-for="TimeInterval" class="text-danger"></span>
+                    </div>
+                </div>
+               
+
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                    <a class="btn btn-secondary" asp-action="Index">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+
+        $("#Doctorid").change(function () {
+            var did = $(this).val();
+
+            $.ajax({
+                url:`/DoctorArea/DoctorClinicSession/GetclinicJson?doctorid=${did}`,
+                type:"get",
+                contentType:"application/json",
+                success: function (result) {
+                    // alert(JSON.stringify(result));
+                    $("#Clinicid").empty();
+                    let opt="";
+                    var Firstrow=`<option value='0'>Select Clinic</option>`
+                    $('#Clinicid').append(Firstrow);
+                    $.each(result, function (ind, item) {
+                         opt = `<option value=${item.clinicID}>${item.clinicName}</option>`;
+                        $("#Clinicid").append(opt);
+                    });
+                },
+                error:function(err)
+                {
+                    alert(JSON.stringify(err));
+                }
+            });
+        });
+
+
+
+
+        
+
+    });
+</script> 

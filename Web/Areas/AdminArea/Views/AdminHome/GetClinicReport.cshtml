@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ClinicReportAdDto>
+<div>
+    <h2 style="text-align:center ;color:crimson">Clinic -Total Booked Appointment</h2>
+</div>
+ <table border="1" style="text-align:center;font-size:large;margin-left:28%" cellpadding="5">
+            <thead style="background-color:antiquewhite">
+                <tr>
+                    <th>SrNo</th>
+                    <th>ClinicName</th>
+                    <th>Total Appointment</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    int srno = 1;
+                  
+                }
+
+                @foreach (var temp in Model)
+                {
+                    <tr>
+                        <td>@srno</td>                
+                        <td>@temp.ClinicName</td>
+                        <td>@temp.TotalAppointment</td>
+                    </tr>
+                    srno++;
+                    
+                }
+              
+            </tbody>
+        </table>
+   
+
+
+<button onclick="printDailyCollection()" style="background-color:blue ;margin-left:45% ;height:40px ;width:70px;color:white;margin-top:8px">Print</button>
+<script type="text/javascript">
+    function printDailyCollection(){
+        window.print();
+    }
+</script>

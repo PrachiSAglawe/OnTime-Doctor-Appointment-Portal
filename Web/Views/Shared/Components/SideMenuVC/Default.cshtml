@@ -1,0 +1,74 @@
+﻿
+
+<div class="col-md-3 ">
+    <div class=" rounded-4 p-4 bg-light mb-4" style="min-height: stretch;">
+
+        <!-- Sidebar Header -->
+        <h4 class="text-center fw-bold mb-4 text-primary">
+            <i class="bi bi-funnel-fill"></i> Filters
+        </h4>
+        <hr />
+        <ul>
+            <li>
+                <a asp-action="SearchdoctorInfo" asp-controller="Home" asp-route-id="0"><span class="price1 text-danger font-18">All</span></a>
+
+            </li>
+
+        </ul>
+        <hr>
+        <form asp-action="SearchdoctorInfo" method="post">
+        
+        <div class="mb-4">
+            <label class="fw-semibold mb-2"><i class="bi bi-heart-pulse"></i> Select Speciality</label>
+            <select class="form-control form-control-lg rounded-pill border-primary shadow-sm" name="SpecilityID" asp-items="@ViewBag.sepcility">
+                <option>Choose Speciality</option>
+            </select>
+        </div>
+<br /><hr /><br />
+        <div class="mb-4">
+            <label class="fw-semibold mb-2"><i class="bi bi-geo-alt-fill"></i> Select Area</label>
+            <select class="form-control form-control-lg rounded-pill border-primary shadow-sm" name="AreaID" id="GlobalAID" asp-items="@ViewBag.Areas">
+                <option>Choose Area</option>
+            </select>
+        </div>
+
+       <hr />
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-main btn-lg rounded-pill shadow">
+                <i class="bi bi-search"></i> Search Doctor
+            </button>
+        </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+
+           $("#GlobalCIID").change(function () {
+                var cid = $(this).val();
+
+                $.ajax({
+                    url:`/CommonJSON/GetAreaJSON?cityid=${cid}`,
+                    type:"get",
+                    contentType:"application/json",
+                    success: function (result) {
+                        // alert(JSON.stringify(result));
+                        $("#GlobalAID").empty();
+                        let opt="";
+                        var Firstrow=`<option value='0'>Select Area</option>`
+                         $('#GlobalAID').append(Firstrow);
+                        $.each(result, function (ind, item) {
+                         opt = `<option value=${item.areaID}>${item.areaName}</option>`;
+   
+                            $("#GlobalAID").append(opt);
+                        });
+                    },
+                    error:function(err)
+                    {
+                        alert(JSON.stringify(err));
+                    }
+                });
+            });
+
+    });
+</script>

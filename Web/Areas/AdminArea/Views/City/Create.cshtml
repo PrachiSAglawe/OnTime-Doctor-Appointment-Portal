@@ -1,0 +1,46 @@
+﻿@model City
+
+
+<div class="card">
+    <div class="card-body">
+        <div>
+
+            <div class="text-danger">
+                @TempData["Message"]
+            </div>
+
+            <form asp-action="Create" method="post" class="g-3  p-5 ">
+                <h3>Create New</h3>
+                <hr />
+                <div class="row">
+
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="CityName"></label>
+                        <input asp-for="CityName" class="form-control" />
+                        <span asp-validation-for="CityName" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18 ">Select State</label>
+                        <select class="form-control" asp-for="StateID" asp-items="@ViewBag.States">
+                            <option>Select State</option>
+                        </select>
+                        <span asp-validation-for="StateID" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+               
+
+
+
+
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                    <a class="btn btn-secondary" asp-action="Index">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

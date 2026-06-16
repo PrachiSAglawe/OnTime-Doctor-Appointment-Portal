@@ -1,0 +1,353 @@
+﻿@model ClinicOwnerSignUpDto
+
+<section class="page-title bg-1">
+<div class="overlay"></div>
+ <div class="container">
+  <div class="row">
+      <div class="col-md-1"></div>
+    <div class="col-md-10">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body">
+                        @TempData["Message"]
+                        <h3 class=" text-center text-uppercase mb-2">Registration</h3><hr />
+                        <form asp-action="SignUp" method="post">
+                            <div asp-validation-summary="ModelOnly">
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label asp-for="FirstName" class="form-label text-dark"></label>
+                                    <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="col-6">
+                                    <label asp-for="LastName" class="form-label text-dark"></label>
+                                    <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label asp-for="Gender" class="form-label text-dark"></label>
+                                    <input asp-for="Gender" class="form-control" placeholder="Gender" />
+                                    <span asp-validation-for="Gender"></span>
+                                </div>
+                                <div class="col-6">
+                                    <label asp-for="MobileNo" class="form-label text-dark"></label>
+                                    <input asp-for="MobileNo" class="form-control" placeholder="MobileNo" />
+                                    <span asp-validation-for="MobileNo"></span>
+
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label asp-for="ClinicName" class="form-label text-dark"></label>
+                                    <input asp-for="ClinicName" class="form-control" placeholder="ClinicName" />
+                                    <span asp-validation-for="ClinicName"></span>
+                                </div>
+                                <div class="col-6">
+                                    <label asp-for="Address" class="form-label text-dark"></label>
+                                    <textarea asp-for="Address" class="form-control" placeholder="Address"></textarea> 
+                                    <span asp-validation-for="Address"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label asp-for="ContactPersonName" class="form-label text-dark"></label>
+                                    <input asp-for="ContactPersonName" class="form-control" placeholder="ContactPersonName" />
+                                    <span asp-validation-for="ContactPersonName"></span>
+                                </div>
+                                <div class="col-6">
+                                    <label asp-for="LandLineNo" class="form-label text-dark"></label>
+                                    <input asp-for="LandLineNo" class="form-control" placeholder="LandLineNo" />
+                                    <span asp-validation-for="LandLineNo"></span>
+                                </div>
+                            </div>
+
+                            <h4>Login Info</h4>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label asp-for="EmailID" class="form-label text-dark"></label>
+                                    <input asp-for="EmailID" class="form-control" placeholder="EmailID" />
+                                </div>
+                                <div class="col-4">
+                                    <label asp-for="Password" class="form-label text-dark"></label>
+                                    <input asp-for="Password" class="form-control" placeholder="Password" />
+                                </div>
+                                <div class="col-4">
+                                    <label asp-for="ConfirmPassword" class="form-label text-dark"></label>
+                                    <input asp-for="ConfirmPassword" class="form-control" placeholder="ConfirmPassword" />
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="row">
+                              
+                                   
+                                
+                                <div class="col-4">
+                                    <label class="form-label text-dark">Select Country</label>
+                                    <select class="form-control" asp-for="CountryID" asp-items="@ViewBag.contries">
+                                        <option>Select Country</option>
+                                    </select>
+                                    <span asp-validation-for="CountryID"></span>
+                                </div>
+
+                                <div class="col-4">
+                                    <label class="form-label text-dark">Select State</label>
+                                    <select class="form-control" asp-for="StateID" asp-items="@ViewBag.states">
+                                        <option>Select State</option>
+                                    </select>
+                                    <span asp-validation-for="StateID"></span>
+                                </div>
+
+                                <div class="col-4">
+                                    <label class="form-label text-dark">Select City</label>
+                                    <select class="form-control" asp-for="CityID" asp-items="@ViewBag.cities">
+                                        <option>Select City</option>
+                                    </select>
+                                    <span asp-validation-for="CityID"></span>
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+                            <br />
+                            <div class="d-flex justify-content-center ">
+                                <button type="submit" data-mdb-button-init
+                                        data-mdb-ripple-init class="btn btn-info btn-main text-white ">
+                                    Register
+                                </button>
+                            </div>
+
+                        </form>
+                        <p class="text-center text-muted mt-5 mb-0">
+                            Have already an account? <a asp-action="SignIn" asp-controller="ManageClinicOwner"
+                                                        class="fw-bold text-body"><u>Login here</u></a>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <section class="page-title bg-1">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="block ">
+                    <div class="container">
+                        <div class="row d-flex justify-content-center h-100">
+                            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                                <div class="card" style="border-radius: 15px;">
+                                    <div class="card-body p-5">
+                                        @TempData["Message"]
+                                        <h3 class=" text-center text-uppercase mb-2">Registration</h3>
+                                        <hr />
+                                        <form asp-action="SignUp" method="post">
+                                            <div asp-validation-summary="ModelOnly">
+                                                
+                                            </div>
+
+                                            <div class="col-12 mb-3">
+                                                <label asp-for="FirstName" class="form-label text-dark"></label>
+                                                <input asp-for="FirstName" class="form-control"  placeholder="First Name" />
+                                                <span asp-validation-for="FirstName"></span>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label asp-for="LastName" class="form-label text-dark"></label>
+                                                <input asp-for="LastName" class="form-control"   placeholder="Last Name" />
+                                                <span asp-validation-for="LastName"></span>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label asp-for="Gender" class="form-label text-dark"></label>
+                                                <input asp-for="Gender" class="form-control"  placeholder="Gender" />
+                                                <span asp-validation-for="Gender"></span>
+                                            </div>
+                                           
+                                            <div class="col-12 mb-3">
+                                                <label asp-for="MobileNo" class="form-label text-dark"></label>
+                                                <input asp-for="MobileNo"class="form-control"   placeholder="MobileNo"/>
+                                                <span asp-validation-for="MobileNo"></span>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label asp-for="ClinicName" class="form-label text-dark"></label>
+                                                <input asp-for="ClinicName" class="form-control"   placeholder="ClinicName" />
+                                                <span asp-validation-for="ClinicName"></span>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label asp-for="Address" class="form-label text-dark"></label>
+                                                <input asp-for="Address" class="form-control"   placeholder="Address" />
+                                                <span asp-validation-for="Address"></span>
+                                            </div>
+                                           
+                                            <div class="col-12 mb-3">
+                                                <label asp-for="ContactPersonName" class="form-label text-dark"></label>
+                                                <input asp-for="ContactPersonName" class="form-control"  placeholder="ContactPersonName" />
+                                                <span asp-validation-for="ContactPersonName"></span>
+                                            </div>
+
+                                            <div class="col-12 mb-3">
+                                                <label asp-for="LandLineNo" class="form-label text-dark"></label>
+                                                <input asp-for="LandLineNo" class="form-control" placeholder="LandLineNo" />
+                                                <span asp-validation-for="LandLineNo"></span>
+                                            </div>
+
+                                            <div class="col-12 mb-3">
+                                                <label class="form-label text-dark">Select Clinic</label>
+                                                <select class="form-control" asp-for="ClinicID" asp-items="@ViewBag.Clinics">
+                                                   <option>Select Clinic</option>
+                                               </select>
+                                               <span asp-validation-for="ClinicID"></span>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label class="form-label text-dark">Select Country</label>
+                                                <select class="form-control" asp-for="CountryID" asp-items="@ViewBag.contries">
+                                                    <option>Select Country</option>
+                                                </select>
+                                                <span asp-validation-for="CountryID"></span>
+                                            </div>
+                                          
+                                            <div class="col-12 mb-3">
+                                                <label class="form-label text-dark">Select State</label>
+                                                <select class="form-control" asp-for="StateID" asp-items="@ViewBag.states">
+                                                    <option>Select State</option>
+                                                </select>
+                                                <span asp-validation-for="StateID"></span>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label class="form-label text-dark">Select City</label>
+                                                <select class="form-control" asp-for="CityID" asp-items="@ViewBag.cities">
+                                                    <option>Select City</option>
+                                                </select>
+                                                <span asp-validation-for="CityID"></span>
+                                            </div>
+
+                                            <h4>Login Info</h4>
+                                            <div class="col-12 mb-3">
+                                                <label asp-for="EmailID" class="form-label text-dark"></label>
+                                                <input asp-for="EmailID" class="form-control" placeholder="EmailID" />
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label asp-for="Password" class="form-label text-dark"></label>
+                                                <input asp-for="Password" class="form-control"  placeholder="Password" />
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label asp-for="ConfirmPassword" class="form-label text-dark"></label>
+                                                <input asp-for="ConfirmPassword" class="form-control"   placeholder="ConfirmPassword"/>
+                                            </div>
+
+                                            <div class="d-flex justify-content-center">
+                                                <button type="submit" data-mdb-button-init
+                                                        data-mdb-ripple-init class="btn btn-info btn-block btn-main btn-lg gradient-custom-4 text-white ">
+                                                    Register
+                                                </button>
+                                            </div>
+
+                                            
+                                            
+                                        </form>
+                                        <p class="text-center text-muted mt-5 mb-0">
+                                            Have already an account? <a asp-action="SignIn" asp-controller="ManageClinicOwner"
+                                                                        class="fw-bold text-body"><u>Login here</u></a>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section> *@
+<script type="text/javascript">
+    $(function () {
+
+        $("#CountryID").change(function () {
+            var catid = $(this).val();
+            $.ajax({
+                url:`/ManageClinicOwner/GetstateJson?CountryID=${catid}`,
+                type:"get",
+                contentType:"application/json",
+                success: function (result) {
+                    // alert(JSON.stringify(result));
+                    $("#StateID").empty();
+                    let opt="";
+                    var Firstrow=`<option value='0'>Select State</option>` 
+                    $('#StateID').append(Firstrow);
+                    $.each(result, function (ind, item) {
+                         opt = `<option value=${item.stateID}>${item.stateName}</option>`;
+                        $("#StateID").append(opt);
+                    });
+                },
+                error:function(err)
+                {
+                    alert(JSON.stringify(err));
+                }
+            });
+        });
+
+
+
+
+        $("#StateID").change(function () {
+            var sid = $(this).val();
+
+            $.ajax({
+                url:`/ManageClinicOwner/GetCityJson?stateid=${sid}`,
+                type:"get",
+                contentType:"application/json",
+                success: function (result) {
+                    // alert(JSON.stringify(result));
+                    $("#CityID").empty();
+                    $.each(result, function (ind, item) {
+                        let opt = `<option value=${item.cityID}>${item.cityName}</option>`;
+                        $("#CityID").append(opt);
+                    });
+                },
+                error:function(err)
+                {
+                    alert(JSON.stringify(err));
+                }
+            });
+        });
+
+    });
+</script>
+
+

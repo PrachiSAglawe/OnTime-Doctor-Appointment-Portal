@@ -1,0 +1,360 @@
+﻿
+
+@* 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<style>
+    /* Highlight available doctor dates */
+    .available-date.day {
+        background-color: #28a745 !important; /* green */
+        color: white !important;
+        border-radius: 50% !important;
+    }
+
+        .available-date.day:hover {
+            background-color: #218838 !important;
+        }
+
+    /* Sundays -> red background */
+    .sunday-disabled.day {
+        background-color: #dc3545 !important; /* red */
+        color: white !important;
+        border-radius: 50% !important;
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
+
+    /* Disabled other days -> subtle grey */
+    .datepicker table tr td.disabled {
+        opacity: 0.45;
+        color: #777;
+        cursor: not-allowed;
+    }
+
+    /* Calendar size bigger */
+    .datepicker {
+        font-size: 1.3rem !important;
+    }
+
+    .datepicker-dropdown {
+        transform: scale(1.2); /* zoom in */
+        transform-origin: top left;
+    }
+</style>
+
+<div class="card">
+    <div class="card-body">
+        @await Component.InvokeAsync("DoctorClinicVC", new { id = ViewBag.DoctorID })
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <!-- Removed "Select Date" heading -->
+                    <input type="text" id="doctorDate" class="form-control" readonly />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="appointmentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Book Appointment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="bookAppointmentForm">
+                    <div class="mb-3">
+                        <label for="selectedDate" class="form-label">Selected Date</label>
+                        <input type="text" id="selectedDate" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label for="patientName" class="form-label">Patient Name</label>
+                        <input type="text" id="patientName" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="patientEmail" class="form-label">Email</label>
+                        <input type="email" id="patientEmail" class="form-control" required />
+                    </div>
+                    <button class="btn btn-primary" type="submit">Book Appointment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var availableDates = @Html.Raw(
+                Newtonsoft.Json.JsonConvert.SerializeObject(
+                        ViewBag.AvailableDates ?? new List<string>()
+                )
+        );
+    console.log("Available Dates:", availableDates);
+
+    function toYMD(date) {
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        var d = date.getDate();
+        if (m < 10) m = '0' + m;
+        if (d < 10) d = '0' + d;
+        return y + '-' + m + '-' + d;
+    }
+
+    $('#doctorDate').datepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true,
+        todayHighlight: true,
+        beforeShowDay: function (date) {
+            var ymd = toYMD(date);
+
+            // Sunday -> disabled + red
+            if (date.getDay() === 0) {
+                return { enabled: false, classes: 'sunday-disabled' };
+            }
+
+            // Enable only dates present in DB
+            if (availableDates.indexOf(ymd) !== -1) {
+                return { enabled: true, classes: 'available-date' };
+            }
+
+            // All other dates disabled
+            return false;
+        }
+    }).on('changeDate', function (e) {
+        var selectedDate = toYMD(e.date);
+        var day = e.date.getDay();
+
+        if (availableDates.indexOf(selectedDate) !== -1 && day !== 0) {
+            $('#selectedDate').val(selectedDate);
+            $('#appointmentModal').modal('show');
+        }
+    });
+
+    $('#bookAppointmentForm').on('submit', function (ev) {
+        ev.preventDefault();
+        var date = $('#selectedDate').val();
+        var name = $('#patientName').val();
+        var email = $('#patientEmail').val();
+
+        console.log('Booking', date, name, email);
+        $('#appointmentModal').modal('hide');
+        alert('Appointment booked for ' + date);
+    });
+</script> *@
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<style>
+    /* Highlight available doctor dates */
+    .available-date.day {
+        background-color: #28a745 ; /* green */
+        color: white ;
+        /* border-radius: 10% ;   oval shape when i incresed size*/
+        width: 2px ; /* circle size small */
+        height: 2px;
+        line-height: 10px;
+        text-align: center;
+        margin: auto;
+        
+    }
+
+        .available-date.day:hover {
+            background-color: #218838 !important;
+        }
+
+    /* Sundays -> red background */
+    .sunday-disabled.day {
+        background-color: #dc3545 !important; /* red */
+        color: white !important;
+        border-radius: 50% !important;
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+
+    /* Disabled other days -> subtle grey */
+    .datepicker table tr td.disabled {
+        opacity: 0.45;
+        color: #777;
+        cursor: not-allowed;
+
+    }
+
+    /* Calendar full width and large */
+    .datepicker {
+        font-size: 1.4rem !important;
+        width: 100% !important;
+    }
+
+    .datepicker-inline {
+        width: 100% !important;
+        display: block !important;
+       
+      
+    }
+
+    .datepicker table {
+        width: 100% !important;
+        border:2px solid black;
+    }
+
+        .datepicker table tr td,
+        .datepicker table tr th {
+            padding: 15px !important; /* bigger cells */
+            border: 1px solid gray;
+        }
+</style>
+
+<div class="card">
+    <div class="card-body">
+        @await Component.InvokeAsync("DoctorClinicVC", new { id = ViewBag.DoctorID })
+        <form>
+            <button class="btn btn-primary btn-main" asp-action="SearchdoctorInfo" asp-controller="Home">Back</button>
+        </form>
+        
+       
+        <div class="row">
+            <div class="col-md-12">
+                <div id="doctorDate"></div> <!-- inline calendar -->
+            </div>
+        </div>
+    </div>
+   
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="appointmentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Time and OPDForm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="bookAppointmentForm" asp-action="BookAppoinment" method="get">
+                    
+                       
+                        <input type="hidden" id="selectedDate" name="AppointmentDate" />
+                   
+                    <div class="mb-3">
+                        <label for="sessionSelect" class="form-label font-18">Select OPD Session</label>
+                        <select class="form-control" id="sessionSelect" name="DoctorClinicSessionID" asp-items="@ViewBag.SessionName">
+                            <option value="">Select OPD Session</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Select Time Slot</label>
+                        <select class="form-control" id="timeSlotDropdown" name="StartTime">
+                            <option value="">Select Time Slot</option>
+                        </select>
+                        
+                    </div>
+                    <button class="btn btn-primary" type="submit">Book Appoinment</button>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <script>
+    var availableDates = @Html.Raw(
+                Newtonsoft.Json.JsonConvert.SerializeObject(
+                        ViewBag.AvailableDates ?? new List<string>()
+                )
+        );
+   
+
+    function toYMD(date) {
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        var d = date.getDate();
+        if (m < 10) m = '0' + m;
+        if (d < 10) d = '0' + d;
+        return y + '-' + m + '-' + d;
+    }
+   
+
+    $('#doctorDate').datepicker({
+        format: "yyyy-mm-dd",
+        todayHighlight: true,
+        autoclose: false,
+        inline: true,
+        beforeShowDay: function (date) {
+            var ymd = toYMD(date);
+
+            if (date.getDay() === 0) {
+                return { enabled: false, classes: 'sunday-disabled' };
+            }
+            
+
+            if (availableDates.indexOf(ymd) !== -1) {
+                return { enabled: true, classes: 'available-date' };
+            }
+              
+
+             return false;
+            
+        }
+    }).on('changeDate', function (e) {
+        var selectedDate = toYMD(e.date);
+        var day = e.date.getDay();
+
+         if (availableDates.indexOf(selectedDate) !== -1 && day !== 0) {
+            $('#selectedDate').val(selectedDate);
+            // alert(selectedDate);
+            $('#appointmentModal').modal('show');
+        }
+    });
+       
+
+
+
+
+    
+
+          $("#selectedDate,#sessionSelect").on("change" ,function () {
+        var sessionId = $(this).val();
+        var appointmentDate = $("#selectedDate").val(); // hidden field मधून date
+
+        if (sessionId && appointmentDate) {
+            $.ajax({
+                url: '/Home/GetTimeSlots',
+                type: 'GET',
+                data: { sessionId: sessionId, appointmentDate: appointmentDate },
+                success: function (data) {
+                  
+                   
+
+
+                    var dropdown = $('#timeSlotDropdown');
+                    dropdown.empty();
+                    dropdown.append('<option value="">Select Time Slot</option>');
+
+                    $.each(data.allSlots, function (i, slot) {
+
+                        if (data.bookedSlots.some(b => b === slot)) {
+                            dropdown.append('<option value="' + slot + '" disabled>' + slot + ' (Booked)</option>');
+                        } else {
+                            dropdown.append('<option value="' + slot + '">' + slot + '</option>');
+                        }
+                    });
+                }
+            });
+        }
+    });
+
+
+      
+</script>  
+
+

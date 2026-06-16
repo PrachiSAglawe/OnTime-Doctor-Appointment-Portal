@@ -1,0 +1,70 @@
+﻿@model IEnumerable<OPDSession>
+
+
+
+<div class="card">
+    <div class="card-body">
+        <ul>
+            <li>
+                <h1 class="card-title font-18 text-primary">Clinic List</h1>
+            </li>
+        </ul>
+        <hr />
+
+        <a class="btn btn-success text-white" asp-action="Create">Create</a>
+        <div class="text-danger">
+            @TempData["Message"]
+        </div>
+
+
+        <div class="table-responsive pt-3">
+            <table class="table table-bordered  table-hover">
+                <thead class="font-18" style="background-color:antiquewhite">
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                          OPDSessionID
+                        </th>
+                        <th>
+                            SessionName
+                        </th>
+                        <th>
+                            ClinicName
+                        </th>
+                  
+
+                        <th>
+                            EditAction
+                        </th>
+                        <th>
+                            DeleteAction
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        int srNo = 1;
+                    }
+                    @foreach (var temp in Model)
+                    {
+                        <tr>
+                            <td>@srNo</td>
+                            <td>@temp.OPDSessionID</td>
+                            <td>@temp.SessionName</td>
+                            <td>@temp.Clinic.ClinicName</td>
+                          
+                            <td><a asp-action="Edit" asp-route-id="@temp.OPDSessionID" class="btn btn-primary">Edit</a></td>
+                            <td><a asp-action="Delete" asp-route-id="@temp.OPDSessionID" class="btn btn-danger ">Delete</a></td>
+                        </tr>
+                        srNo++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

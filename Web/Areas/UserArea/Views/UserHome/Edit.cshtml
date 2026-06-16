@@ -1,0 +1,88 @@
+﻿@model Patient
+
+
+<div class="card">
+    <div class="card-body">
+        <div>
+
+            <div class="text-danger">
+                @TempData["Message"]
+            </div>
+
+            <form asp-action="Edit" method="post" class="g-3" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h3>Edit Patient</h3>
+                <input type="hidden" asp-for="PatientID"/>
+                <hr />
+                <div class="row mb-2">
+
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="FirstName"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="LastName"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="MobileNo"></label>
+                        <input asp-for="MobileNo" class="form-control" />
+                        <span asp-validation-for="MobileNo" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="Address"></label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
+
+
+                </div>
+                <div class="row mb-2">
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="Gender"></label>
+                        <select asp-for="Gender" asp-items="@Html.GetEnumSelectList<GenderEnum>();" class="form-control">
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="EmailID"></label>
+                        <input asp-for="EmailID" class="form-control" />
+                        <span asp-validation-for="EmailID" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="row mb-2">
+
+
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18">Select Photo</label>
+                        <input type="file" asp-for="PhotoFile" class="form-control" />
+                        <span asp-validation-for="PhotoFile" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label for="inputNanme4" class="form-label font-18 ">Select UserName</label>
+                        <select class="form-control" asp-for="UserID" asp-items="@ViewBag.Users">
+                            <option>Select User</option>
+                        </select>
+                        <span asp-validation-for="UserID" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                    <a class="btn btn-secondary" asp-action="AllPatients">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

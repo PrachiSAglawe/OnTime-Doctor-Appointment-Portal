@@ -1,0 +1,96 @@
+﻿@model Prescription
+
+@{
+    Layout = null;
+}
+
+<div>
+
+   
+    <br />
+    <div>
+        @await Component.InvokeAsync("PatientInfoVC", new { patientid = Convert.ToInt64(Context.Session.GetString("PatientID")) })
+    </div>
+</div>
+<hr />
+<div>
+</div>
+
+<h2 style="text-align:center">Prescription</h2>
+
+<table border="1" style="margin-left:20%" cellpadding="10">
+    <thead>
+        <tr>
+            <th>Srno</th>
+            <th>Medicine Type</th>
+            <th>Medicine Name</th>
+            <th>Frequency</th>
+            <th>Dosage</th>
+            <th>Quantity</th>
+            <th>Unit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int srno = 1;
+        }
+        @foreach (var temp in Model.PrescriptionMedicines)
+        {
+            <tr>
+                <td>@srno</td>
+                <td>@temp.Medicine.MedicineTypes</td>
+                <td>@temp.Medicine.MedicineName</td>
+                <td>@temp.Frequency</td>
+                <td>@temp.Dosage</td>
+                <td>@temp.Qty</td>
+                <td>@temp.Unit</td>
+
+            </tr>
+            srno++;
+        }
+      
+        
+    </tbody>
+</table>
+<br />
+<table style="margin-left:21%">
+    @foreach (var item in Model.PrescriptionQuality)
+    {
+
+
+        <tr>
+            <th><b>NextVisit:</b></th>
+            <td>@item.NextVisit</td>
+            <th></th>
+              <td></td>
+            <th><b>Suggestion:</b></th>
+            <td>@item.Suggestion</td>
+        </tr>
+
+    }
+
+</table>
+<br />
+<table style="margin-left:21%">
+    @foreach(var temp in Model.BookedAppointments.BookedAppPayments)
+    {
+        <tr style="margin-bottom:6px">
+            <th><b>Amount:</b></th>
+            <td>@temp.Amount</td>
+         <th></th><td></td>
+            <th><b>PaymentMode:</b></th>
+            <td>@temp.PaymentMode</td>
+        </tr>
+    }
+</table>
+
+ 
+<br />
+<button onclick="printPrescribtion()" style="background-color:blue ;margin-left:45% ;height:30px ;width:60px;color:white">Print</button>
+<script type="text/javascript">
+    function printPrescribtion(){
+        window.print();
+    }
+</script>
+
+

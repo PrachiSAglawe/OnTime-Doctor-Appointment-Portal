@@ -1,0 +1,96 @@
+﻿@model Patient
+
+<div class="card">
+    <div class="card-body">
+
+        <h1 class=" text-center">Patient Details</h1>
+        <hr />
+        <div class="table-responsive pt-3">
+            <form>
+                <table class="table table-bordered  table-hover">
+                    <thead class="font-18">
+                        <tr>
+
+                        <tr>
+                            <th>
+                               PatientID
+                            </th>
+                            <td>
+                                @Model.PatientID
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                FirstName
+                            </th>
+                            <td>
+                                @Model.FirstName
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                LastName
+                            </th>
+                            <td>@Model.LastName</td>
+                        </tr>
+                        <tr>
+                            <th>
+                                MobileNo
+                            </th>
+                            <td>
+                                @Model.MobileNo
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Gender
+                            </th>
+                            <td>
+                                @Model.Gender
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Address
+                            </th>
+                            <td>
+                                @Model.Address
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                EmailID
+                            </th>
+                            <td>
+                                @Model.EmailID
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                UserName
+                            </th>
+                            <td>@Model.User.FullName</td>
+                        </tr>
+                        <tr>
+                            <th>
+                                PhotoPath
+                            </th>
+
+                            <td>
+                                <img src="@Model.PhotoPath" width="150" height="120" />
+                            </td>
+
+                        </tr>
+                       
+                       
+
+                    </thead>
+
+                </table>
+            </form>
+            <a class="btn btn-success text-white" asp-action="AllPatients" asp-controller="UserHome">Back</a>
+        </div>
+    </div>
+</div>
+
+

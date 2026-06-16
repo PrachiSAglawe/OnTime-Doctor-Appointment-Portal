@@ -1,0 +1,26 @@
+﻿
+@model IEnumerable<CheckBoxDto>
+<div style="background-color:whitesmoke;padding:4px">
+    @foreach(var temp in Model)
+    {
+        if (temp.IsSelected)
+        {
+            <div class="form-check">
+                <input checked="checked" class="form-check-input" type="checkbox" name="Specility" value="@temp.Value" />
+                <label class="form-check-label" for="gridCheck1">
+                    @temp.Text
+                </label>
+            </div>
+        }
+        else
+        {
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="Specility" value="@temp.Value">
+                <label class="form-check-label" for="gridCheck1">
+                    @temp.Text
+                </label>
+            </div>
+
+        }
+    }
+</div>

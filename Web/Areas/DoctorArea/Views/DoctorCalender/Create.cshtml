@@ -1,0 +1,52 @@
+﻿@model DoctorCalender
+<div class="Card">
+    <div class="card-body">
+        <div>
+
+            <div class="text-danger">
+                @TempData["Message"]
+            </div>
+
+            <form asp-action="Create" method="post" class="g-3 shadow-lg dark p-5 ">
+                <h3>Create New</h3>
+                <hr />
+               
+                <div>
+                    <div class="col-4">
+                        <label for="inputNanme4" class="form-label font-18 ">Select OPDSessionName</label>
+                        <select class="form-control" asp-for="DoctorClinicSessionID" asp-items="@ViewBag.OPDSession">
+                            <option>Select OPD Session</option>
+                        </select>
+                        <span asp-validation-for="DoctorClinicSessionID" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div>
+
+
+                    <div class="col-4">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="Fromdate"></label>
+                        <input asp-for="Fromdate" class="form-control" />
+                        <span asp-validation-for="Fromdate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div>
+
+
+                    <div class="col-4">
+                        <label for="inputNanme4" class="form-label font-18" asp-for="Todate"></label>
+                        <input  asp-for="Todate" class="form-control" />
+                        <span asp-validation-for="Todate" class="text-danger"></span>
+                    </div>
+                </div>
+              
+
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Generate</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                    <a class="btn btn-secondary" asp-action="Index">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

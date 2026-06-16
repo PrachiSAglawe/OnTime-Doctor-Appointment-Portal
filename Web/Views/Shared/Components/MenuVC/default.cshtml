@@ -1,0 +1,127 @@
+﻿<div class="mt-3">
+<form asp-action="SearchdoctorInfo"  asp-controller="Home"  method="post">
+
+	<div class="row">
+		<div class="col-lg-3">
+			<div class="form-group">
+                    <label class="text-dark" style="font-size:x-large"><b>Select Specility</b></label>
+				<select class="form-control rounded-pill border-dark bg-gray" name="SpecilityID" asp-items="@ViewBag.sepcility">
+					<option>Choose Specility</option>
+
+				</select>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div class="form-group">
+                    <label class="text-dark" style="font-size:x-large"><b>Select Country</b></label>
+                    <select class="form-control rounded-pill border-dark bg-gray" id="GlobalCID" name="CountryID" asp-items="@ViewBag.countries">
+					<option>Select Country</option>
+
+				</select>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div class="form-group">
+                    <label class="text-dark" style="font-size:x-large"><b>Select State</b></label>
+                    <select class="form-control rounded-pill border-dark bg-gray" id="GlobalSID" name="StateID" asp-items="@ViewBag.state">
+					<option>Select State</option>
+
+				</select>
+			</div>
+		</div>
+		<div class="col-lg-2">
+			<div class="form-group">
+                    <label class="text-dark" style="font-size:x-large"><b>Select City</b></label>
+                    <select class="form-control rounded-pill border-dark bg-gray" id="GlobalCIID" name="CityID" asp-items="@ViewBag.City">
+					<option>Select City</option>
+
+				</select>
+			</div>
+		</div>
+        
+		<div class="col-1">
+            <div  style="margin-top:38px"></div>
+			<button type="submit" class="btn btn-main btn-round-full" style="height:45px">Search</button>
+		</div>
+	</div>
+
+	@* <div class="col-md-3 mb-3">
+				<select class="form-control py-3" name="SpecilityID">
+					<option value="">-- Select Specility --</option>
+					@foreach (var item in @ViewBag.sepcility as SelectList)
+					{
+						<option value="@item.Value">@item.Text</option>
+					}
+				</select>
+			</div>
+			<button type="submit" class="btn btn-main btn-round">Search</button> *@
+
+
+
+
+
+
+
+</form>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#GlobalCID").change(function () {
+            var catid = $(this).val();
+
+            $.ajax({
+                url:`/CommonJSON/GetstateJson?CountryID=${catid}`,
+                type:"get",
+                contentType:"application/json",
+                success: function (result) {
+                    // alert(JSON.stringify(result));
+                    $("#GlobalSID").empty();
+                    let opt="";
+                    var Firstrow=`<option value='0'>Select State</option>`
+                    $('#GlobalSID').append(Firstrow);
+                    $.each(result, function (ind, item) {
+                         opt = `<option value=${item.stateID}>${item.stateName}</option>`;
+                        $("#GlobalSID").append(opt);
+                    });
+                },
+                error:function(err)
+                {
+                    alert(JSON.stringify(err));
+                }
+            });
+        });
+
+
+
+
+        $("#GlobalSID").change(function () {
+            var sid = $(this).val();
+
+            $.ajax({
+                url:`/CommonJSON/GetCityJson?stateid=${sid}`,
+                type:"get",
+                contentType:"application/json",
+                success: function (result) {
+                    // alert(JSON.stringify(result));
+                    $("#GlobalCIID").empty();
+                      let opt="";
+                    var Firstrow=`<option value='0'>Select City</option>`
+                    $('#GlobalCIID').append(Firstrow);
+                    $.each(result, function (ind, item) {
+                        opt = `<option value=${item.cityID}>${item.cityName}</option>`;
+                        $("#GlobalCIID").append(opt);
+                    });
+                },
+                error:function(err)
+                {
+                    alert(JSON.stringify(err));
+                }
+            });
+        });
+
+
+
+    });
+</script> 

@@ -1,0 +1,38 @@
+﻿@model PatientInfoDto
+
+
+<div style="width:100%">
+    <table style="border:1px solid black ;width:100%" cellpadding="10">
+
+        <tr>
+            <th rowspan="4" style="width:35%;color:red;font-size:30px;border-right:1px solid black;text-align:center">
+                Patient Details
+            </th>
+            <th>
+                MobileNo :
+            </th>
+            <td style="border-right:1px solid black">@Model.MobileNo</td>
+        </tr>
+
+        <tr>
+            <th>
+                Patient Name :
+            </th>
+            <td style="border-right:1px solid black">@Model.FullName</td>
+            <th>
+                Address:
+            </th>
+            <td style="border-right:1px solid black">@Model.Address</td>
+        </tr>
+        <tr>
+            <th>
+                Gender:
+            </th>
+            <td style="border-right:1px solid black">@Model.Gender</td>
+            <th>
+                EmailID :
+            </th>
+            <td>@Model.EmailID</td>
+        </tr>
+    </table>
+</div>

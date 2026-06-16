@@ -1,0 +1,154 @@
+﻿@model PrescribeInfoDto
+
+<div class="card">
+    <h2 class="text-center text-info mt-2"> Create New Patient Prescribtion</h2>
+    <div class="card-header" style="background-color:lavenderblush">
+        
+       
+        <div>
+            
+            <div>
+            @await Component.InvokeAsync("DoctorPrescribeInfoVC", new { doctorId = Convert.ToInt64(Context.Session.GetString("DoctorID"))})
+            </div>
+            <br />
+            <div>
+            @await Component.InvokeAsync("PatientInfoVC", new { patientid = Convert.ToInt64(Context.Session.GetString("PatientID")) })
+            </div>
+        </div>
+        <hr />
+        
+
+    </div>
+    <div class="card-body">
+        <form asp-action="Prescribed" method="post">
+            <input type="hidden" asp-for="DoctorID" name="DoctorID" value="@Convert.ToInt64(Context.Session.GetString("DoctorID"))" />
+            <input type="hidden" asp-for="BookedAppointmentID" value="@ViewBag.BookAppointmentID" name="BookedAppointmentID" />
+            <input type="hidden" asp-for="PrescriptionDate" name="PrescriptionDate" value="@DateTime.Now" />
+            <div class="row">
+
+                <table>
+                    <thead class="table table-bordered">
+                        <tr>
+                            <th>Medicine Types</th>
+                            <th>Medinine Names</th>
+                            <th>Frequency</th>
+                            <th>Dosage</th>
+                            <th>Qty</th>
+                            <th>Unit</th>
+
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < 6; i++)
+                        {
+                            <tr>
+                                <td>
+                                    <select name="MedicineType" asp-items="@Html.GetEnumSelectList<MedicineTypes>()" class="form-control MedicineType" data-row="@i">
+                                        <option value="0">Select Medicine type </option>
+                                    </select>
+                                    <span asp-validation-for="MedicineTypes" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <select asp-for="MedicineID[i]" asp-items="@ViewBag.MedicineName" name="MedicineID" class="form-control MedicineID" data-row="@i">
+                                        <option value="0">Select Medicine Name </option>
+                                    </select>
+                                    <span asp-validation-for="MedicineID" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="Frequency" class="form-control" />
+                                    <span asp-validation-for="Frequency" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="Dosage" class="form-control" />
+                                    <span asp-validation-for="Dosage" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <input asp-for="Qty" class="form-control" />
+                                    <span asp-validation-for="Qty" class="text-danger"></span>
+                                </td>
+                                <td>
+                                    <select name="Unit" asp-items="@Html.GetEnumSelectList<UnitEnum>()" class="form-control">
+                                        <option>Select Unit type </option>
+                                    </select>
+                                    <span asp-validation-for="Unit" class="text-danger"></span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label asp-for="nextVisit" class="form-label text-dark font-18" ></label>
+                    <input asp-for="nextVisit" class="form-control" placeholder="NextVisit" />
+                    <span asp-validation-for="nextVisit" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Suggestions" class="form-label text-dark font-18"></label>
+                    <textarea asp-for="Suggestions" class="form-control" placeholder="Suggestion"></textarea>
+                    <span asp-validation-for="Suggestions" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <label class="form-label text-dark font-18">OPDFees</label>
+                    <input value="@ViewBag.OPDFees" class="form-control" placeholder="OpdFees" />
+                    <span asp-validation-for="OPDFees" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="PaymentMode" class="form-label text-dark font-18"></label>
+                    <select asp-for="PaymentMode" asp-items="@Html.GetEnumSelectList<PaymentModeEnum>()" class="form-control">
+                        <option>Select payment type </option>
+                    </select>
+                    <span asp-validation-for="PaymentMode" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label asp-for="Amount" class="form-label text-dark font-18"></label>
+                    <input asp-for="Amount" class="form-control" placeholder="Amount" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary">Save & Print</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+                <a class="btn btn-secondary" asp-action="Index">Back</a> 
+            </div>
+        </form>
+       
+
+    </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+ <script>
+    $(document).on("change", ".MedicineType", function () {
+        var mid = $(this).val();   // selected type
+        var row = $(this).data("row");  // row number
+        var $medicineDropdown = $(".MedicineID[data-row='" + row + "']");
+
+        if (mid) {
+            $.ajax({
+                url: `/DoctorArea/DoctorHome/GetMedicineByType?MID=${mid}`,
+                type: "GET",
+                success: function (result) {
+                    $medicineDropdown.empty().append('<option value="">Select Medicine</option>');
+                    $.each(result, function (i, item) {
+                        $medicineDropdown.append(`<option value="${item.medicineID}">${item.medicineName}</option>`);
+                    });
+                },
+                error: function (err) {
+                    alert("Error: " + JSON.stringify(err));
+                }
+            });
+        } else {
+            $medicineDropdown.empty().append('<option value="">Select Medicine</option>');
+        }
+    });
+</script> 
+
+

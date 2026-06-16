@@ -1,0 +1,38 @@
+﻿@model DoctorPrescribeInfoDto
+
+
+<div style="width:100%">
+    <table style="border:1px solid black ;width:100%" cellpadding="10">
+     
+    <tr>
+        <th rowspan="4" style="width:35%;color:red;font-size:30px;border-right:1px solid black;text-align:center">
+            Doctor Details
+        </th>
+        <th>
+            MobileNo :
+        </th>
+            <td style="border-right:1px solid black">@Model.MobileNo</td>
+    </tr>   
+   
+        <tr>
+            <th>
+                Doctor Name :
+            </th>
+            <td style="border-right:1px solid black">@Model.DoctorName</td>
+            <th>
+                Doctor Specility :
+            </th>
+            <td style="border-right:1px solid black">@Model.DoctorSpecilityName</td>
+        </tr>
+      <tr>
+        <th>
+            DoctorQualification:
+        </th>
+            <td style="border-right:1px solid black">@Model.DoctorQualification</td>
+        <th>
+            DateTime :
+        </th>
+        <td>@DateTime.Now</td>
+      </tr>
+</table>
+</div>

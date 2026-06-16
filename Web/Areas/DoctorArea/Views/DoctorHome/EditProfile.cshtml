@@ -1,0 +1,76 @@
+﻿@model Doctor
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="text-center"> Edit Profile </h2>
+
+        <form asp-action="EditProfile" method="Post">
+            <div asp-validation-summary="ModelOnly" class="text-danger">
+            </div>
+            <div class="row mb-3">
+                <label asp-for="FirstName" class=" col-form-label text-dark"></label>
+                <div class="col-md-7">
+                    <input class="form-control" asp-for="FirstName" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label  asp-for="LastName" class="col-form-label text-dark"></label>
+                <div class="col-md-7">
+                    <input class="form-control" asp-for="LastName" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="MobileNo" class="col-form-label text-dark"></label>
+                <div class="col-md-7">
+                    <input class="form-control" asp-for="MobileNo" />
+                    <span asp-validation-for="MobileNo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="IsAvailable" class="col-form-label text-dark"></label>
+                <div class="col-md-7">
+                    <input asp-for="IsAvailable" />
+                    <span asp-validation-for="IsAvailable" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="Address" class="col-form-label text-dark"></label>
+                <div class="col-md-7">
+                    <input class="form-control" asp-for="Address" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label asp-for="DoctorExperience" class="col-form-label text-dark"></label>
+                <div class="col-md-7">
+                    <input class="form-control" asp-for="DoctorExperience" />
+                    <span asp-validation-for="DoctorExperience" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputNanme4" class="form-label text-dark ">Select Area</label>
+            <div class="col-md-7">
+                <select class="form-control" asp-for="AreaID" asp-items="@ViewBag.Areas">
+                    <option>Select Area</option>
+                </select>
+                <span asp-validation-for="AreaID" class="text-danger"></span>
+            </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label asp-for="DoctorQualification" class="col-form-label text-dark"></label>
+                <div class="col-md-7">
+                    <input class="form-control" asp-for="DoctorQualification" />
+                    <span asp-validation-for="DoctorQualification" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </form>
+
+    </div>
+</div>

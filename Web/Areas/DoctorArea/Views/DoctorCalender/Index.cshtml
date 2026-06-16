@@ -1,0 +1,68 @@
+﻿@model IEnumerable<DoctorCalender>
+
+
+<div class="card">
+    <div class="card-body">
+        <ul>
+            <li>
+                <h1 class="card-title font-18 text-primary">DoctorCalender List</h1>
+            </li>
+        </ul>
+        <hr />
+
+        <a class="btn btn-success text-white" asp-action="Create" asp-controller="DoctorCalender">Create</a>
+        <div class="text-danger">
+            @TempData["Message"]
+        </div>
+
+
+        <div class="table-responsive pt-3">
+            <table class="table table-bordered  table-hover">
+                <thead class="font-18" style="background-color:antiquewhite">
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                           DoctorCalenderID
+                        </th>
+                        <th>
+                            DoctorClinicSessionID
+                        </th>
+                        <th>
+                            Fromdate
+                        </th>
+                        <th>
+                            ToDate
+                        </th>
+                      
+                       
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        int srNo = 1;
+                    }
+                    @foreach (var temp in Model)
+                    {
+                        <tr>
+                            <td>@srNo</td>
+                            <td>@temp.DoctorCalenderID</td>
+                            <td>@temp.DoctorClinicSessionID</td>
+                            <td>@temp.Fromdate</td>
+                            <td>@temp.Todate</td>
+                           
+
+                           
+                            
+                        </tr>
+                        srNo++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

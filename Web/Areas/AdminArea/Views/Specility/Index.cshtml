@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Specility>
+
+<div class="card">
+    <div class="card-body">
+        <ul>
+            <li>
+                <h1 class="card-title font-18 text-primary">Specility List</h1>
+            </li>
+        </ul>
+        <hr />
+
+        <a class="btn btn-success text-white" asp-action="Create">Create</a>
+        <div class="text-danger">
+            @TempData["Message"]
+        </div>
+
+
+        <div class="table-responsive pt-3">
+            <table class="table table-bordered  table-hover">
+                <thead class="font-18" style="background-color:antiquewhite">
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            SpecilityID
+                        </th>
+                        <th>
+                            SpecilityName
+                        </th>
+                        <th>
+                            EditAction
+                        </th>
+                        <th>
+                            DeleteAction
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        int srNo = 1;
+                    }
+                    @foreach (var temp in Model)
+                    {
+                        <tr>
+                            <td>@srNo</td>
+                            <td>@temp.SpecilityID</td>
+                            <td>@temp.SpecilityName</td>
+                            <td><a asp-action="Edit" asp-route-id="@temp.SpecilityID" class="btn btn-primary">Edit</a></td>
+                            <td><a asp-action="Delete" asp-route-id="@temp.SpecilityID" class="btn btn-danger ">Delete</a></td>
+                        </tr>
+                        srNo++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

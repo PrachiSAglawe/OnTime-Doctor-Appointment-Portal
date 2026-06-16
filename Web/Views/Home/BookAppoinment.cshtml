@@ -1,0 +1,136 @@
+﻿@model BookAppointmentDto
+
+<section class="page-title bg-1">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body">
+                       
+                        <h3 class=" text-center text-uppercase mb-2">Appointment</h3><hr />
+                        <form asp-action="BookAppoinment" method="post" enctype="multipart/form-data">
+                           
+                            <div asp-validation-summary="ModelOnly">
+                            </div>
+                      
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label asp-for="AppointmentDate" class="form-label text-dark"></label><br />
+                                    <input type="text" value="@ViewBag.AppointentTime" name="AppointmentDate" class="form-control" />
+                                    <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+                                </div>
+                                <div class="col-6">
+                                    <label asp-for="StartTime" class="form-label text-dark"></label>
+                                    <input type="text" value="@ViewBag.StartTime" name="StartTime" class="form-control" />
+                                    <span asp-validation-for="StartTime" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label asp-for="EndTime" class="form-label text-dark"></label>
+                                    @* <input asp-for="EndTime" class="form-control" placeholder="Endtime" /> *@
+                                    <input type="text" value="@ViewBag.EndTime" name="EndTime" class="form-control" />
+                                    <span asp-validation-for="EndTime"></span>
+                                </div>
+                                <div class="col-6">
+                                    <label asp-for="DoctorClinicSessionID" class="form-label text-dark"></label>
+                                    <input type="text" value="@ViewBag.DoctorClinicSessionID" name="DoctorClinicSessionID" class="form-control" />
+                                    <span asp-validation-for="DoctorClinicSessionID"></span>
+
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                               
+                                <div class="col-6">
+                                    <label asp-for="IsPaid" class="form-label text-dark"></label><br>
+                                    <input asp-for="IsPaid" style="height:30px;width:30px" />
+                                    <span asp-validation-for="IsPaid"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label asp-for="FirstName" class="form-label text-dark"></label>
+                                    <input asp-for="FirstName" class="form-control" placeholder="FirstName" />
+                                    <span asp-validation-for="FirstName"></span>
+                                </div>
+                                <div class="col-6">
+                                    <label asp-for="LastName" class="form-label text-dark"></label>
+                                    <input asp-for="LastName" class="form-control" placeholder="LastName" />
+                                    <span asp-validation-for="LastName"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label asp-for="Address" class="form-label text-dark"></label>
+                                    <textarea asp-for="Address" class="form-control" placeholder="Address"></textarea>
+                                    <span asp-validation-for="Address"></span>
+                                </div>
+                                <div class="col-6">
+                                    <label asp-for="MobileNo" class="form-label text-dark"></label>
+                                    <input asp-for="MobileNo" class="form-control" placeholder="MobileNo" />
+                                    <span asp-validation-for="MobileNo"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label asp-for="Gender" class="form-label  text-dark"></label>
+                                    <select name="Gender" class="form-control" name="Gender" asp-items="@Html.GetEnumSelectList<GenderEnum>()">
+                                        <option>Select Gender</option>
+                                    </select>
+                                    <span asp-validation-for="Gender"></span>
+                                </div>
+                                <div class="col-6">
+                                    <label asp-for="EmailID" class="form-label text-dark"></label>
+                                    <input asp-for="EmailID" class="form-control" placeholder="EmailID" />
+                                    <span asp-validation-for="EmailID"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label for="inputNanme4" class="form-label">Select Photo</label>
+                                    <input type="file" asp-for="PhotoFile" class="form-control" />
+                                    <span asp-validation-for="PhotoFile" class="text-danger"></span>
+                                </div>
+                                <div class="col-6">
+                                    <label  class="form-label text-dark">Select User</label>
+                                    <select class="form-control" asp-for="UserID" asp-items="@ViewBag.Users">
+                                        <option>Select User</option>
+                                    </select>
+                                    <span asp-validation-for="UserID"></span>
+                                </div>
+                            </div>
+
+                                               
+                           <br />
+                            <div class="d-flex justify-content-center ">
+                                <button type="submit" 
+                                        class="btn btn-info btn-main text-white ">
+                                    Make Appoinment
+                                </button>
+                                <button 
+                                        class="btn btn-info btn-main text-white" style="margin-left:5px" asp-action="SearchdoctorInfo" asp-controller="Home">
+                                   Back
+                                </button>
+                              
+                                
+                            </div>
+
+                        </form>
+                      
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><script>
+              alert(TempData["Message"] );
+    </script>
+
+</section>
+
+
+
+

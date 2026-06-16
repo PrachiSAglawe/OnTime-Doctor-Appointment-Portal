@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Clinic>
+
+
+<div class="card">
+    <div class="card-body">
+        <ul>
+            <li>
+                <h1 class="card-title font-18 text-primary">Clinic List</h1>
+            </li>
+        </ul>
+        <hr />
+
+        <a class="btn btn-success text-white" asp-action="Create">Create</a>
+        <div class="text-danger">
+            @TempData["Message"]
+        </div>
+
+
+        <div class="table-responsive pt-3">
+            <table class="table table-bordered  table-hover">
+                <thead class="font-18" style="background-color:antiquewhite">
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                           ClinicID
+                        </th>
+                        <th>
+                            ClinicName
+                        </th>
+                        <th>
+                            Address
+                        </th>
+                        <th>
+                            MobileNo
+                        </th>
+                        <th>
+                            EmailID
+                        </th>
+                        <th>
+                           ContactPersonName
+                        </th>
+                        <th>
+                            LandLineNo
+                        </th>
+                        <th>
+                            WebsiteUrl
+                        </th>
+                        <th>
+                           CityName
+                        </th>
+
+
+                        <th>
+                            EditAction
+                        </th>
+                        <th>
+                            DeleteAction
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        int srNo = 1;
+                    }
+                    @foreach (var temp in Model)
+                    {
+                        <tr>
+                            <td>@srNo</td>
+                            <td>@temp.ClinicID</td>
+                            <td>@temp.ClinicName</td>
+                            <td>@temp.Address</td>
+                            <td>@temp.MobileNo</td>
+                            <td>@temp.EmailID</td>
+                            <td>@temp.ContactPersonName</td>
+                            <td>@temp.LandLineNo</td>
+                            <td>@temp.WebsiteUrl</td>
+                            <td>@temp.City.CityName</td>
+                            <td><a asp-action="Edit" asp-route-id="@temp.ClinicID" class="btn btn-primary">Edit</a></td>
+                            <td><a asp-action="Delete" asp-route-id="@temp.ClinicID" class="btn btn-danger ">Delete</a></td>
+                        </tr>
+                        srNo++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
